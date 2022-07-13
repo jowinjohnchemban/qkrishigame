@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Qkrishi - Game</title>
+        <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    </head>
+    <body>
+        <a-scene>
+            <a-assets>
+                <img id="sky" src="/assets/sky.jpg">
+                <a-asset-item id="ground" src="/assets/ground.glb"></a-asset-item>
+                <a-asset-item id="floor" src="/assets/floor.glb"></a-asset-item>
+                <a-asset-item id="road" src="/assets/road.glb"></a-asset-item>
+            </a-assets>
+            <a-sky src="#sky" color="#87CEEB"></a-sky>
+            <a-plane gltf-model="#floor" position="1.161 1.619 1.191" scale="100 1 100"></a-plane>
+            <a-plane gltf-model="#ground" position="-55.3 -2.350 50.621" scale="0.100 0.100 0.100"></a-plane>
+            <a-entity gltf-model="#road" position="0 1.500 27.703" rotation="0 -90 0" scale="10 1 10"></a-entity>
+            <a-entity camera look-controls wasd-controls="acceleration:100" position="-2 3.1 33"></a-entity>
+        </a-scene>
+    </body>
+</html>
