@@ -1,0 +1,54 @@
+<html>
+<head>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    </head>
+
+    <body>
+        <a-scene>
+            <a-assets>
+                <img id="sky" src="assets/sky.jpg">
+                <asset-item id="ground" src="assets/ground.gltf"></asset-item>
+                <asset-item id="floor" src="assets/floor.gltf"></asset-item>
+                <asset-item id="road" src="assets/road.gltf"></asset-item>
+                
+                <a-asset-item id="texture" src="assets/groundtexture.jpg"></a-asset-item>
+                <a-asset-item id="stapler" src="objects/stapler/scene.gltf"></a-asset-item>
+                <a-asset-item id="books" src="objects/books/scene.gltf"></a-asset-item>
+                <a-asset-item id="teddy" src="objects/teddy_bear/scene.gltf"></a-asset-item>
+                <a-asset-item id="chessboard" src="objects/chess_board/scene.gltf"></a-asset-item> 
+                <a-asset-item id="mouse" src="objects/computer_mouse_a4tech_bloody_v7/scene.gltf"></a-asset-item>
+                <a-asset-item id="computer" src="objects/desktop_computer/scene.gltf"></a-asset-item>
+                <a-asset-item id="pencil" src="objects/desktop_computer/scene.gltf"></a-asset-item>
+                <a-asset-item id="bottle" src="objects/small_bottle/scene.gltf"></a-asset-item>
+                <a-asset-item id="books1" src="objects/occult_books/scene.gltf"></a-asset-item>
+                
+
+            </a-assets>
+                
+            <a-sky src="#sky" color="#87CEEB"></a-sky>
+            <a-plane gltf-model="#floor" position="1.161 1.619 1.191" scale="100 1 100"></a-plane>
+            <a-plane gltf-model="#ground" src="#texture" position="-55.3 -2.350 50.621" scale="0.100 0.100 0.100"></a-plane>
+            <a-entity gltf-model="#road" position="0 1.500 27.703" rotation="0 -90 0" scale="10 1 10"></a-entity>
+            <a-entity camera look-controls wasd-controls="acceleration:100" position="-2 3.1 33"></a-entity> 
+            
+           <a-entity gltf-model="objects/stapler/scene.gltf"
+                     position="0.340 1.938 26.012"
+                     rotation="177.360 16.476 -170.764"
+                     scale="0.738 0.677 1"></a-entity> 
+           <a-entity gltf-model="#books"
+                      position="0.035 1.821 23.335"
+                      scale="1 1 1"></a-entity>
+        <a-entity gltf-model="objects/teddy_bear/scene.gltf" position="-6.084 3.07374 23.72204" rotation="-3.7620000000000005 107.304 98.011" scale="-0.076 0.035 0.073">
+          </a-entity>
+               <a-entity gltf-model="objects/chess_board/scene.gltf"
+                         position="-10.673 2.52058 14.88338" 
+                         scale="0.016 0.05256 -0.03382">
+                </a-entity>
+       <a-entity gltf-model="objects/computer_mouse_a4tech_bloody_v7/scene.gltf" position="-6.35188 2.74895 21.83993" scale="-0.232 0.328 0.25081"></a-entity>
+            <a-entity gltf-model="objects/small_bottle/scene.gltf" position="-1.629 2.54527 24.91227" scale="2.851 1.5896 4.57926"></a-entity>
+            <a-entity gltf-model="#books1"></a-entity>
+          
+              
+        </a-scene>
+    </body>
+</html>
