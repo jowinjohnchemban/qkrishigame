@@ -1,0 +1,101 @@
+<html>
+
+<head>
+    <title>Qkrishi - Game</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script>
+        // Recieve cursor click on X Box and change door from 'clip: Static Pose' to 'clip: Animation'
+        AFRAME.registerComponent('xboxclicked', {
+            events: {
+                click: function (evt) {
+                    console.log('X Box was clicked', evt.detail.intersection.point); // Console log
+                    document.querySelector("#scifidoor").setAttribute('animation-mixer', 'clip: Animation');
+                    document.querySelector("#p1ximg").setAttribute('opacity', '100');
+                    document.querySelector("#xbox").setAttribute('gltf-model', 'NULL'); // Removing X after clicking
+                    // Need to find the proper method to change opacity of 3 d model or remove it
+                }
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <a-scene>
+        <a-assets>
+            <img id="sky" src="/assets/sky.jpg">
+        </a-assets></img>
+        <a-asset-item id="ground" src="/assets/ground.glb"></a-asset-item>
+        <!--
+                <a-asset-item id="lamp" src="/assets/lamp.glb"></a-asset-item>
+                <a-asset-item id="radio" src="/assets/radio.glb"></a-asset-item>
+                <a-asset-item id="boardduster" src="/assets/boardduster.glb"></a-asset-item>
+                -->
+        <a-asset-item id="h-box" src="/assets/h_box.glb"></a-asset-item>
+        <a-asset-item id="x-box" src="/assets/x_box.glb"></a-asset-item>
+        <a-asset-item id="z-box" src="/assets/z_box.glb"></a-asset-item>
+        <a-asset-item id="sci-fi-door" src="/assets/sci_fi_door.glb"></a-asset-item>
+        <!-- "Sci fi door" (https://skfb.ly/6RMrN) by shadowkillering is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/). -->
+        <!-- <img id="zero" src="/assets/0.png"></img>
+        <img id="one" src="/assets/1.png"></img> -->
+        <img id="rightarrow" src="/assets/right_arrow.png"></img>
+        <img id="himg" src="/assets/h_image.png"></img>
+        <img id="ximg" src="/assets/x_image.png"></img>
+        <img id="zimg" src="/assets/z_image.png"></img>
+        </a-assets>
+
+        <!-- Sky -->
+        <a-sky src="#sky" color="#87CEEB"></a-sky>
+        <!-- Ground -->
+        <a-circle color="#000000" geometry="primitive: circle" rotation="-90 0 0" radius="500" static-body></a-circle>
+        <a-entity gltf-model="#ground" position="-55.3 -0.500 45.621" scale="0.100 0.050 0.100" static-body></a-entity>
+        <!--
+            <a-entity gltf-model="#lamp" position="0 1 0" scale="0.003 0.003 0.003"></a-entity>
+            <a-entity gltf-model="#radio" position="-4.078 0.620 0" scale="0.030 0.030 0.030" rotation="0 0 -5"></a-entity>
+            <a-entity gltf-model="#boardduster" position="-1.952 1 -0.527" scale="0.0001 0.0001 0.0001"></a-entity>            
+            -->
+        <!-- H Gate -->
+        <a-box id="hbox" gltf-model="#h-box" geometry="primitive: box" position="-3 1 16" scale="10 10 10"
+            event-set__enter="_event: mouseenter; scale: 10.5 10.5 10.5"
+            event-set__leave="_event: mouseleave; scale: 10 10 10" static-body></a-box>
+        <!-- X Gate -->
+        <a-box id="xbox" gltf-model="#x-box" geometry="primitive: box" position="1 1 16" scale="10 10 10"
+            event-set__enter="_event: mouseenter; scale: 10.5 10.5 10.5"
+            event-set__leave="_event: mouseleave; scale: 10 10 10" static-body xboxclicked>
+        </a-box>
+        <!-- Z Gate -->
+        <a-box id="zbox" gltf-model="#z-box" geometry="primitive: box" position="5 1 16" scale="10 10 10"
+            event-set__enter="_event: mouseenter; scale: 10.5 10.5 10.5"
+            event-set__leave="_event: mouseleave; scale: 10 10 10" static-body></a-box>
+        <!-- Door -->
+        <a-entity id="scifidoor" gltf-model="#sci-fi-door" position="1 0.219 10" scale="1.9 1.9 1.9"
+            animation-mixer="clip: Static Pose; clampWhenFinished: true; loop: once" static-body></a-entity>
+        <!-- Door control:- "clip: Animation" for door open and "clip: Static Pose" for door not open -->
+        <!-- Puzzle 1 -->
+        <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="-6 7 11"></a-box>
+        <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="-5 7 11"></a-box>
+        <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="-4 7 11"></a-box>
+        <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="-3 7 11"></a-box>
+        <a-image id="p1ximg" src="#ximg" position="0.9915 7.7 11" scale="0.7 0.7 0.7" opacity="0"></a-image>
+        <a-image src="#rightarrow" position="0.9915 7 11" scale="7 1 1"></a-image>
+        <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="5 7 11"></a-box>
+        <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="6 7 11"></a-box>
+        <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="7 7 11"></a-box>
+        <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="8 7 11"></a-box>
+        <!-- Camera -->
+        <a-entity id="rig" movement-controls position="1 1.1 20">
+            <a-camera id="camera" camera look-controls="pointerLockEnabled: true" wasd-controls="acceleration: 10">
+                <a-cursor position="0 0 -1" color="#39FF14"></a-cursor>
+            </a-camera>
+        </a-entity>
+        <!-- Laser -->
+        <a-entity laser-controls="hand: left" raycaster="lineColor: red; lineOpacity: 0.5"></a-entity>
+        <a-entity laser-controls="hand: right" raycaster="lineColor: green; lineOpacity: 0.5"></a-entity>
+        <!-- Windows Motion Controls -->
+        <a-entity windows-motion-controls="hand: left"></a-entity>
+        <a-entity windows-motion-controls="hand: right"></a-entity>
+    </a-scene>
+</body>
+
+</html>
