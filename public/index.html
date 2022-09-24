@@ -10,10 +10,10 @@
         AFRAME.registerComponent('xboxclicked', {
             events: {
                 click: function (evt) {
-                    console.log('X Box was clicked', evt.detail.intersection.point); // Console log
+                    // console.log('X Box was clicked', evt.detail.intersection.point); // Console log
                     document.querySelector("#scifidoor").setAttribute('animation-mixer', 'clip: Animation');
                     document.querySelector("#p1ximg").setAttribute('opacity', '100');
-                    document.querySelector("#xbox").setAttribute('gltf-model', 'NULL'); // Removing X after clicking
+                    document.querySelector("#xbox").setAttribute('position', '1 -5 16'); // Removing X box after clicking by moving it down
                     // Need to find the proper method to change opacity of 3 d model or remove it
                 }
             }
@@ -73,10 +73,14 @@
             animation-mixer="clip: Static Pose; clampWhenFinished: true; loop: once" static-body></a-entity>
         <!-- Door control:- "clip: Animation" for door open and "clip: Static Pose" for door not open -->
         <!-- Puzzle 1 -->
-        <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="-4.80 7 11"></a-box>
-        <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="-4.20 7 11"></a-box>
-        <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="-3.60 7 11"></a-box>
-        <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="-3.00 7 11"></a-box>
+        <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="-4.80 7 11">
+        </a-box>
+        <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="-4.20 7 11">
+        </a-box>
+        <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="-3.60 7 11">
+        </a-box>
+        <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="-3.00 7 11">
+        </a-box>
         <a-image id="p1ximg" src="#ximg" position="0.9915 7.7 11" scale="0.7 0.7 0.7" opacity="0"></a-image>
         <a-image src="#rightarrow" position="0.9915 7 11" scale="7 1 1"></a-image>
         <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="5.00 7 11"></a-box>
