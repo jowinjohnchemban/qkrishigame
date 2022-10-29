@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Stranded | QKRISHI - Quantum Game</title>
+    <meta charset="UTF-8">
+    <link rel="icon" href="assets/favicon.png" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <meta name="keywords" content="QKRISHI, Quantum, Stranded, Game, AR, VR, A-FRAME, IEEE">
+    <meta name="description" content="Stranded, a web based VR quantum game">
+    <meta name="author" content="QKRISHI">
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"
+        crossorigin="anonymous"></script>
+    <script>
+        AFRAME.registerComponent('playbuttonclicked', {
+            events: {
+                click: function (evt) {
+                    console.log('Started: Play button clicked | Next: Level 1 - Puzzle 1 '); // Console log player status
+                    document.querySelector("#intro-hboximg").setAttribute('position', '-30.795 -3 29.848');  //Remove introduction elements down
+                    document.querySelector("#intro-xboximg").setAttribute('position', '-28.343 -3 29.848');
+                    document.querySelector("#intro-zboximg").setAttribute('position', '-25.890 -3 29.848');
+                    document.querySelector("#gameplaybutton").setAttribute('position', '-28.343 -6.345 27.680');
+                    document.querySelector("#instructions").setAttribute('position', '-28.343 -5.206 27.690');
+                    document.querySelector("#p1-hbox").setAttribute('position', '-22.110 0.634 2.905'); // Setup puzzle 1 options
+                    document.querySelector("#p1-xbox").setAttribute('position', '-17.122 0.784 3.322');
+                    document.querySelector("#p1-zbox").setAttribute('position', '-13.291 0.930 4.114');
+                    document.querySelector("#p1question").setAttribute('position', '-19 7 0');
+
+                }
+            }
+        });
+
+        // Recieve cursor click on box and change door from 'clip: Static Pose' to 'clip: Animation'
+        AFRAME.registerComponent('p1boxclicked', {
+            events: {
+                click: function (evt) {
+                    // console.log('Box was clicked', evt.detail.intersection.point); // Console log
+                    console.log('Solved: Level 1 - Puzzle 1 | X Box was clicked | Next: Level 1 - Puzzle 2 '); // Console log player staus
+                    document.querySelector("#p1-scifidoor").setAttribute('animation-mixer', 'clip: Animation');
+                    document.querySelector("#p1-img").setAttribute('opacity', '100');
+                    document.querySelector("#p1-xbox").setAttribute('position', '0 -5 0'); // Removing the box after clicking by moving it down
+                }
+            }
+        });
+        AFRAME.registerComponent('p2boxclicked', {
+            events: {
+                click: function (evt) {
+                    console.log('Solved: Level 1 - Puzzle 2 | Z Box was clicked | Next: Level 1 - Puzzle 3 '); // Console log player status
+                    document.querySelector("#p2-scifidoor").setAttribute('animation-mixer', 'clip: Animation');
+                    document.querySelector("#p2-img").setAttribute('opacity', '100');
+                    document.querySelector("#p2-zbox").setAttribute('position', '0 -5 0'); // Removing the box after clicking by moving it down
+                }
+            }
+        });
+        AFRAME.registerComponent('p3boxclicked', {
+            events: {
+                click: function (evt) {
+                    console.log('Solved: Level 1 - Puzzle 3 | Z Box was clicked | Next: Level 1 - Puzzle 4 '); // Console log player status
+                    document.querySelector("#p3-scifidoor").setAttribute('animation-mixer', 'clip: Animation');
+                    document.querySelector("#p3-img").setAttribute('opacity', '100');
+                    document.querySelector("#p3-zbox").setAttribute('position', '0 -5 0'); // Removing the box after clicking by moving it down
+                }
+            }
+        });
+        AFRAME.registerComponent('p4boxclicked', {
+            events: {
+                click: function (evt) {
+                    console.log('Solved: Level 1 - Puzzle 4 | H Box was clicked | Next: Level 2'); // Console log player status
+                    document.querySelector("#p4-scifidoor").setAttribute('animation-mixer', 'clip: Animation');
+                    document.querySelector("#p4-img").setAttribute('opacity', '100');
+                    document.querySelector("#p4-hbox").setAttribute('position', '0 -5 0'); // Removing the box after clicking by moving it down
+                }
+            }
+        });
+    </script>
+    <noscript>Your browser does not support JavaScript!</noscript>
+</head>
+
+<body>
+    <a-scene>
+        <a-assets>
+            <img id="sky" src="/assets/sky.jpg" crossorigin="anonymous"></img>
+            <a-asset-item id="ground" src="/assets/ground.glb" crossorigin="anonymous"></a-asset-item>
+            <img id="stranded" src="/assets/stranded.png" crossorigin="anonymous"></img>
+            <img id="playbutton" src="/assets/taptoplay.png" crossorigin="anonymous"></img>
+            <!-- Source: https://www.pngegg.com/en/png-nolwr -->
+            <img id="instructionsimg" src="/assets/instructions.png" crossorigin="anonymous"></img>
+            <img id="hboximg" src="/assets/h_box_poster.png" crossorigin="anonymous"></img>
+            <img id="xboximg" src="/assets/x_box_poster.png" crossorigin="anonymous"></img>
+            <img id="zboximg" src="/assets/z_box_poster.png" crossorigin="anonymous"></img>
+            <a-asset-item id="h-box" src="/assets/h_box.glb" crossorigin="anonymous"></a-asset-item>
+            <a-asset-item id="x-box" src="/assets/x_box.glb" crossorigin="anonymous"></a-asset-item>
+            <a-asset-item id="z-box" src="/assets/z_box.glb" crossorigin="anonymous"></a-asset-item>
+            <a-asset-item id="sci-fi-door" src="/assets/sci_fi_door.glb" crossorigin="anonymous"></a-asset-item>
+            <!-- "Sci fi door" (https://skfb.ly/6RMrN) by shadowkillering is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/). -->
+            <img id="rightarrow" src="/assets/right_arrow.png" crossorigin="anonymous"></img>
+            <img id="himg" src="/assets/h_image.png" crossorigin="anonymous"></img>
+            <img id="ximg" src="/assets/x_image.png" crossorigin="anonymous"></img>
+            <img id="zimg" src="/assets/z_image.png" crossorigin="anonymous"></img>
+            <img id="texture" src="/assets/redblackcyan.png" crossorigin="anonymous"></img>
+        </a-assets>
+
+        <!-- Environment -->
+        <a-sky src="#sky" color="#87CEEB"></a-sky>
+        <a-circle src="#texture" color="#000000" geometry="primitive: circle" rotation="-90 0 0" radius="500"
+            static-body></a-circle>
+        <a-entity gltf-model="#ground" position="-71.229 0.200 74.810" scale="0.200 0.015 0.200" static-body></a-entity>
+
+        <!-- Introduction -->
+        <a-entity id="intro">
+            <a-image src="#stranded" position="-28.343 7.827 27.660" scale="10 3 1"></a-image>
+            <a-image id="gameplaybutton" src="#playbutton" position="-28.343 6.345 27.680" scale="5 2 1"
+                playbuttonclicked>
+            </a-image>
+            <a-image id="instructions" src="#instructionsimg" position="-28.343 5.206 27.690" scale="3 1 1"></a-image>
+            <a-image id="intro-hboximg" src="#hboximg" position="-30.795 3 29.848" scale="1 1 1"
+                event-set__enter="_event: mouseenter; scale: 2 3 1" event-set__leave="_event: mouseleave; scale: 1 1 1"
+                static-body></a-image>
+            <a-image id="intro-xboximg" src="#xboximg" position="-28.343 3 29.848" scale="1 1 1"
+                event-set__enter="_event: mouseenter; scale: 2 3 1" event-set__leave="_event: mouseleave; scale: 1 1 1"
+                static-body></a-image>
+            <a-image id="intro-zboximg" src="#zboximg" position="-25.890 3 29.848" scale="1 1 1"
+                event-set__enter="_event: mouseenter; scale: 2 3 1" event-set__leave="_event: mouseleave; scale: 1 1 1"
+                static-body></a-image>
+        </a-entity>
+
+        <!-- Maze Walls -->
+        <a-entity id="maze" position="0 0 0">
+            <a-box src="#texture" geometry="primitive: box" height="7" width="50" depth="2.5" color="#808080"
+                position="-38.153 3.653 5.810" rotation="0 90 0" side="double"></a-box>
+            <a-box src="#texture" geometry="primitive: box" height="7" width="30" depth="2.5" color="#808080"
+                position="-18.532 3.653 15.816" rotation="0 90 0" side="double"></a-box>
+            <a-box src="#texture" geometry="primitive: box" height="7" width="60" depth="2.5" color="#808080"
+                position="-9.400 3.653 -20.011" rotation="0 0 0" side="double"></a-box>
+            <a-box src="#texture" geometry="primitive: box" height="7" width="60" depth="2.5" color="#808080"
+                position="10.200 3.653 -0.315" rotation="0 0 0" side="double"></a-box>
+            <a-box src="#texture" geometry="primitive: box" height="7" width="30" depth="2.5" color="#808080"
+                position="21.824 3.653 -33.760" rotation="0 90 0" side="double"></a-box>
+            <a-box src="#texture" geometry="primitive: box" height="7" width="30" depth="2.5" color="#808080"
+                position="41.378 3.653 -14.074" rotation="0 90 0" side="double"></a-box>
+            <a-box src="#texture" geometry="primitive: box" height="7" width="70" depth="2.5" color="#808080"
+                position="55.572 3.653 -49.830" rotation="0 0 0" side="double"></a-box>
+            <a-box src="#texture" geometry="primitive: box" height="7" width="30" depth="2.5" color="#808080"
+                position="55.128 3.653 -30.206" rotation="0 0 0" side="double"></a-box>
+            <a-box src="#texture" geometry="primitive: box" height="7" width="30" depth="2.5" color="#808080"
+                position="41.378 3.653 -14.074" rotation="0 90 0" side="double"></a-box>
+            <a-box src="#texture" geometry="primitive: box" height="7" width="70" depth="2.5" color="#808080"
+                position="88.714 3.653 -16.032" rotation="0 90 0" side="double"></a-box>
+            <a-box src="#texture" geometry="primitive: box" height="7" width="50" depth="2.5" color="#808080"
+                position="69.095 3.653 -6.455" rotation="0 90 0" side="double"></a-box>
+        </a-entity>
+
+        <!-- Puzzle 1 -->
+        <a-entity id="p1" position="-10.576 0.765 17.296" rotation="0 0 0">
+            <!-- H Gate -->
+            <a-box id="p1-hbox" gltf-model="#h-box" geometry="primitive: box" position="-22.110 -5.634 2.905"
+                scale="10 10 10" event-set__enter="_event: mouseenter; scale: 10.5 10.5 10.5"
+                event-set__leave="_event: mouseleave; scale: 10 10 10" static-body></a-box>
+            <!-- X Gate -->
+            <a-box id="p1-xbox" gltf-model="#x-box" geometry="primitive: box" position="-17.122 -5.784 3.322"
+                scale="10 10 10" event-set__enter="_event: mouseenter; scale: 10.5 10.5 10.5"
+                event-set__leave="_event: mouseleave; scale: 10 10 10" static-body p1boxclicked>
+            </a-box>
+            <!-- Z Gate -->
+            <a-box id="p1-zbox" gltf-model="#z-box" geometry="primitive: box" position="-13.291 -5.930 4.114"
+                scale="10 10 10" event-set__enter="_event: mouseenter; scale: 10.5 10.5 10.5"
+                event-set__leave="_event: mouseleave; scale: 10 10 10" static-body></a-box>
+            <!-- Door -->
+            <a-entity id="p1-scifidoor" gltf-model="#sci-fi-door" position="-17.764 0.219 0" scale="1.9 1.9 1.9"
+                animation-mixer="clip: Static Pose; clampWhenFinished: true; loop: once" static-body></a-entity>
+            <!-- Door control:- "clip: Animation" for door open and "clip: Static Pose" for door not open -->
+            <a-entity id="p1question" position="-19 -7 0">
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="-4.80 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="-4.20 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="-3.60 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="-3.00 0 0">
+                </a-box>
+                <a-image id="p1-img" src="#ximg" position="0.9915 1 0" scale="0.7 0.7 0.7" opacity="0"></a-image>
+                <a-image src="#rightarrow" position="0.9915 0 0" scale="7 1 1"></a-image>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="5.00 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="5.60 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="6.20 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="6.80 0 0">
+                </a-box>
+            </a-entity>
+        </a-entity>
+
+        <!-- Puzzle 2 -->
+        <a-entity id="p2" position="16.792 0.200 7.556" rotation="0 -90 0">
+            <!-- H Gate -->
+            <a-box id="p2-hbox" gltf-model="#h-box" geometry="primitive: box" position="-21.564 1.1 4.216"
+                scale="10 10 10" event-set__enter="_event: mouseenter; scale: 10.5 10.5 10.5"
+                event-set__leave="_event: mouseleave; scale: 10 10 10" static-body></a-box>
+            <!-- Z Gate -->
+            <a-box id="p2-zbox" gltf-model="#z-box" geometry="primitive: box" position="-15.254 1.1 4.050"
+                scale="10 10 10" event-set__enter="_event: mouseenter; scale: 10.5 10.5 10.5"
+                event-set__leave="_event: mouseleave; scale: 10 10 10" static-body p2boxclicked></a-box>
+            <!-- Door -->
+            <a-entity id="p2-scifidoor" gltf-model="#sci-fi-door" position="-17.764 0.219 0" scale="1.9 1.9 1.9"
+                animation-mixer="clip: Static Pose; clampWhenFinished: true; loop: once" static-body></a-entity>
+            <!-- Door control:- "clip: Animation" for door open and "clip: Static Pose" for door not open -->
+            <a-entity position="-19 7 0">
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="-4.80 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="-4.20 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="-3.60 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="-3.00 0 0">
+                </a-box>
+                <a-image id="p2-img" src="#zimg" position="0.9915 1 0" scale="0.7 0.7 0.7" opacity="0"></a-image>
+                <a-image src="#rightarrow" position="0.9915 0 0" scale="7 1 1"></a-image>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="5.00 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="5.60 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="6.20 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="6.80 0 0">
+                </a-box>
+            </a-entity>
+        </a-entity>
+
+        <!-- Puzzle 3 -->
+        <a-entity id="p3" position="55.542 0 -22.255" rotation="0 -90 0">
+            <!-- X Gate -->
+            <a-box id="p3-xbox" gltf-model="#x-box" geometry="primitive: box" position="-21.564 0.848 4.216"
+                scale="10 10 10" event-set__enter="_event: mouseenter; scale: 10.5 10.5 10.5"
+                event-set__leave="_event: mouseleave; scale: 10 10 10" static-body></a-box>
+            <!-- Z Gate -->
+            <a-box id="p3-zbox" gltf-model="#z-box" geometry="primitive: box" position="-17.144 0.848 4.050"
+                scale="10 10 10" event-set__enter="_event: mouseenter; scale: 10.5 10.5 10.5"
+                event-set__leave="_event: mouseleave; scale: 10 10 10" static-body p3boxclicked>
+            </a-box>
+            <!-- H Gate -->
+            <a-box id="p3-hbox" gltf-model="#h-box" geometry="primitive: box" position="-13.308 0.864 4.418"
+                scale="10 10 10" event-set__enter="_event: mouseenter; scale: 10.5 10.5 10.5"
+                event-set__leave="_event: mouseleave; scale: 10 10 10" static-body></a-box>
+            <!-- Door -->
+            <a-entity id="p3-scifidoor" gltf-model="#sci-fi-door" position="-17.764 0.219 0" scale="1.9 1.9 1.9"
+                animation-mixer="clip: Static Pose; clampWhenFinished: true; loop: once" static-body></a-entity>
+            <!-- Door control:- "clip: Animation" for door open and "clip: Static Pose" for door not open -->
+            <a-entity position="-19 7 0">
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="-4.80 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="-4.20 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="-3.60 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="-3.00 0 0">
+                </a-box>
+                <a-image id="p3-img" src="#zimg" position="0.9915 1 0" scale="0.7 0.7 0.7" opacity="0"></a-image>
+                <a-image src="#rightarrow" position="0.9915 0 0" scale="7 1 1"></a-image>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="5.00 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="5.60 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="6.20 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="6.80 0 0">
+                </a-box>
+            </a-entity>
+        </a-entity>
+
+        <!-- Puzzle 4 -->
+        <a-entity id="p4" position="61.135 0.113 -8.876" rotation="0 180 0">
+            <!-- Z Gate -->
+            <a-box id="p4-zbox" gltf-model="#z-box" geometry="primitive: box" position="-21.564 1.1 4.216"
+                scale="10 10 10" event-set__enter="_event: mouseenter; scale: 10.5 10.5 10.5"
+                event-set__leave="_event: mouseleave; scale: 10 10 10" static-body></a-box>
+            <!-- H Gate -->
+            <a-box id="p4-hbox" gltf-model="#h-box" geometry="primitive: box" position="-14.520 1.1 4.050"
+                scale="10 10 10" event-set__enter="_event: mouseenter; scale: 10.5 10.5 10.5"
+                event-set__leave="_event: mouseleave; scale: 10 10 10" static-body p4boxclicked></a-box>
+            <!-- Door -->
+            <a-entity id="p4-scifidoor" gltf-model="#sci-fi-door" position="-17.764 0.219 0" scale="1.9 1.9 1.9"
+                animation-mixer="clip: Static Pose; clampWhenFinished: true; loop: once" static-body></a-entity>
+            <!-- Door control:- "clip: Animation" for door open and "clip: Static Pose" for door not open -->
+            <a-entity position="-19 7 0">
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="-4.80 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="-4.20 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="-3.60 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="-3.00 0 0">
+                </a-box>
+                <a-image id="p4-img" src="#himg" position="0.9915 1 0" scale="0.7 0.7 0.7" opacity="0"></a-image>
+                <a-image src="#rightarrow" position="0.9915 0 0" scale="7 1 1"></a-image>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="5.00 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="5.60 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#2ac" position="6.20 0 0">
+                </a-box>
+                <a-box geometry="primitive: box" height="0.5" width="0.5" depth="0.5" color="#fff" position="6.80 0 0">
+                </a-box>
+            </a-entity>
+        </a-entity>
+
+        <!-- Camera -->
+        <a-entity id="rig" movement-controls position="-28.343 1.8 35.723">
+            <a-camera id="camera" look-controls="pointerLockEnabled: true" wasd-controls="acceleration: 10">
+                <a-cursor position="0 0 -1" color="#39FF14"></a-cursor>
+            </a-camera>
+        </a-entity>
+        <!-- Laser -->
+        <a-entity laser-controls="hand: left" raycaster="lineColor: red; lineOpacity: 0.5"></a-entity>
+        <a-entity laser-controls="hand: right" raycaster="lineColor: green; lineOpacity: 0.5"></a-entity>
+        <!-- Windows Motion Controls -->
+        <a-entity windows-motion-controls="hand: left"></a-entity>
+        <a-entity windows-motion-controls="hand: right"></a-entity>
+    </a-scene>
+</body>
+
+</html>
